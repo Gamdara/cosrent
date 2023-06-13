@@ -24,7 +24,7 @@ class Pesanan extends BaseController
         $img = $this->request->getFile('ktp')->getTempName();
         
         $handler = service('image')->withFile($img);
-        $handler->resize($handler->getWidth()/4,$handler->getHeight()/4, true);
+        $handler->resize(intval($handler->getWidth()/4),intval($handler->getHeight()/4), true);
         $handler->save();
 
         $req['ktp'] = base64_encode(file_get_contents($img));
@@ -32,7 +32,7 @@ class Pesanan extends BaseController
         $img =  $this->request->getFile('ktp_selfie')->getTempName();
         
         $handler = service('image')->withFile($img);
-        $handler->resize($handler->getWidth()/4,$handler->getHeight()/4, true);
+        $handler->resize(intval($handler->getWidth()/4),intval($handler->getHeight()/4), true);
         $handler->save();
         
         $req['ktp_selfie'] = base64_encode(file_get_contents($img));
